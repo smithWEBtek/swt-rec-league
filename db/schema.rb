@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180116154211) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id"
+    t.integer "team_id", default: 1
     t.integer "likes", default: 0
   end
 
