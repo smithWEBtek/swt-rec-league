@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20180116154211) do
     t.integer "height"
     t.integer "weight"
     t.string "image_url"
+    t.integer "team_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id", default: 1
     t.integer "likes", default: 0
   end
 
@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(version: 20180116154211) do
     t.string "logo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password"
-    t.string "password_confirmation"
   end
 
 end

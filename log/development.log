@@ -924,3 +924,78 @@ Completed 200 OK in 68ms (Views: 35.6ms | ActiveRecord: 32.0ms)
   [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6540698671463456430)[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "nba-team-search-api_development"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "nba-team-search-api_test"[0m
+  [1m[35m (765.4ms)[0m  [1m[35mCREATE DATABASE "nba-team-search-api_development" ENCODING = 'unicode'[0m
+  [1m[35m (807.3ms)[0m  [1m[35mCREATE DATABASE "nba-team-search-api_test" ENCODING = 'unicode'[0m
+  [1m[35m (132.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (28.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6540698671463456430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTeams (20171120171627)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (80.1ms)[0m  [1m[35mCREATE TABLE "teams" ("id" bigserial primary key, "name" character varying, "wins" integer, "losses" integer, "logo_url" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (24.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171120171627"]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePlayers (20171128181135)
+  [1m[35m (6.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (55.7ms)[0m  [1m[35mCREATE TABLE "players" ("id" bigserial primary key, "name" character varying, "height" integer, "weight" integer, "image_url" character varying, "team_id" integer DEFAULT 1, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20171128181135"]]
+  [1m[35m (11.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddLikesToPlayers (20180116154211)
+  [1m[35m (6.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.6ms)[0m  [1m[35mALTER TABLE "players" ADD "likes" integer DEFAULT 0[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180116154211"]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-01-25 19:46:01.925536"], ["updated_at", "2018-01-25 19:46:01.925536"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(6540698671463456430)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (29.2ms)[0m  [1m[32mINSERT INTO "teams" ("name", "wins", "losses", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Warriors"], ["wins", 40], ["losses", 40], ["logo_url", "http://images.contentful.com/a4rx79jcl3n1/2N9qqpVHvqsQoisAAgAeGE/8ad3772823f592851acd87193b9a910f/logo-gsw-primary-blue.svg"], ["created_at", "2018-01-25 19:46:07.991779"], ["updated_at", "2018-01-25 19:46:07.991779"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "teams" ("name", "wins", "losses", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Celtics"], ["wins", 40], ["losses", 40], ["logo_url", "https://pbs.twimg.com/profile_images/2815110476/033393c13e6dec0fd6cc5006453fbeb5_400x400.png"], ["created_at", "2018-01-25 19:46:08.029102"], ["updated_at", "2018-01-25 19:46:08.029102"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "wins", "losses", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lakers"], ["wins", 40], ["losses", 40], ["logo_url", "https://pbs.twimg.com/profile_images/923604432830439424/PmmLpTom.jpg"], ["created_at", "2018-01-25 19:46:08.037175"], ["updated_at", "2018-01-25 19:46:08.037175"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "wins", "losses", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Blue Devils"], ["wins", 40], ["losses", 40], ["logo_url", "http://www.hufsd.edu/assets/images/2017/april/modal-4_04c.jpg"], ["created_at", "2018-01-25 19:46:08.039435"], ["updated_at", "2018-01-25 19:46:08.039435"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "wins", "losses", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Manchester United"], ["wins", 40], ["losses", 40], ["logo_url", "https://www.hcltech.com/sites/default/files/left_mu.png"], ["created_at", "2018-01-25 19:46:08.041376"], ["updated_at", "2018-01-25 19:46:08.041376"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (18.3ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Kyrie Irving"], ["height", 190], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6442.png&w=350&h=254"], ["team_id", 2], ["created_at", "2018-01-25 19:46:08.063825"], ["updated_at", "2018-01-25 19:46:08.063825"], ["likes", 5]]
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Al Horford"], ["height", 210], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3213.png&w=350&h=254"], ["team_id", 2], ["created_at", "2018-01-25 19:46:08.091121"], ["updated_at", "2018-01-25 19:46:08.091121"], ["likes", 5]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Paul Pogba"], ["height", 190], ["weight", 200], ["image_url", "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p74208.png"], ["team_id", 5], ["created_at", "2018-01-25 19:46:08.100142"], ["updated_at", "2018-01-25 19:46:08.100142"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "David De Gea"], ["height", 190], ["weight", 200], ["image_url", "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p51940.png"], ["team_id", 5], ["created_at", "2018-01-25 19:46:08.102898"], ["updated_at", "2018-01-25 19:46:08.102898"], ["likes", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Zlatan Ibrahimovic"], ["height", 190], ["weight", 200], ["image_url", "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/250x250/p9808.png"], ["team_id", 5], ["created_at", "2018-01-25 19:46:08.105563"], ["updated_at", "2018-01-25 19:46:08.105563"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Kobe Bryant"], ["height", 200], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"], ["team_id", 3], ["created_at", "2018-01-25 19:46:08.107916"], ["updated_at", "2018-01-25 19:46:08.107916"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "team_id", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Kyle Kuzma"], ["height", 200], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3134907.png&w=350&h=254"], ["team_id", 3], ["created_at", "2018-01-25 19:46:08.110365"], ["updated_at", "2018-01-25 19:46:08.110365"], ["likes", 5]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Stephen Curry"], ["height", 200], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&w=350&h=254"], ["created_at", "2018-01-25 19:46:08.112851"], ["updated_at", "2018-01-25 19:46:08.112851"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Kevin Durant"], ["height", 200], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3202.png&w=350&h=254"], ["created_at", "2018-01-25 19:46:08.115404"], ["updated_at", "2018-01-25 19:46:08.115404"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "players" ("name", "height", "weight", "image_url", "created_at", "updated_at", "likes") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Klay Thompson"], ["height", 200], ["weight", 200], ["image_url", "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/6475.png&w=350&h=254"], ["created_at", "2018-01-25 19:46:08.117565"], ["updated_at", "2018-01-25 19:46:08.117565"], ["likes", 5]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
