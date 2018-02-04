@@ -2,5 +2,6 @@ export {
   // createRec,
   // deleteRec,
   // updateRec,
-  fetchRecs
+  fetchRecs,
+  fetchPlayerNames
 } from './RecActions'

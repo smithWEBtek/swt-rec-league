@@ -2,6 +2,7 @@ import * as actionTypes from './RecActionTypes';
 
 const initialState = {
   records: [],
+  playerNames: [],
   loading: false,
   error: false,
   message: ''
@@ -48,10 +49,30 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_RECS:
       const records = action.recordsList
 
-      console.log('[RecsReducer] records', records)
+      // console.log('[RecsReducer] records', records)
 
       return Object.assign({}, state, {
         records: records
+      })
+
+    //-----FETCH PLAYER NAMES ------------------------
+    // case actionTypes.FETCH_PLAYER_NAMES_START:
+    //   return Object.assign({}, state, { loading: true })
+
+    // case actionTypes.FETCH_PLAYER_NAMES_SUCCESS:
+    //   return Object.assign({}, state, { loading: false })
+
+    // case actionTypes.FETCH_PLAYER_NAMES_FAIL:
+    //   return Object.assign({}, state, {
+    //     error: action.error,
+    //     loading: false,
+    //     message: action.type
+    //   })
+
+    case actionTypes.FETCH_PLAYER_NAMES:
+      const names = action.namesList
+      return Object.assign({}, state, {
+        playerNames: names
       })
 
 
