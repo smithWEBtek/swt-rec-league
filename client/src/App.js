@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-// import logo from './logo.svg'
 import bball from './bball.svg.png'
 import './App.css'
 import { connect } from 'react-redux'
 import * as actions from './RecActions'
-import Player from './Player'
+import PlayersList from './PlayersList'
 
 class App extends Component {
 
@@ -13,37 +12,17 @@ class App extends Component {
   }
 
   render() {
-    let renderRecs = <div><h3>We are loading the players now...</h3></div>
-    let recs = [...this.props.recs]
-    if (this.props.recs.length > 0) {
-      renderRecs = recs.map((rec, index) => {
-        return (
-          <div key={index}>
-            <Player
-              name={rec.name}
-              height={rec.height}
-              weight={rec.weight}
-              teamName={rec.team.name}
-              teamLogoUrl={rec.team.logo_url}
-              image_url={rec.image_url}
-            />
-          </div>
-        )
-      })
-    }
-
     return (
       <div>
         <header className="App-header">
           <img src={bball} className="App-logo" alt="bball" />
           <h1>Rec League</h1>
         </header>
-        {renderRecs}
+        <PlayersList recs={this.props.recs} />
       </div>
     )
   }
 }
-
 
 const mapStateToProps = state => {
   return {
