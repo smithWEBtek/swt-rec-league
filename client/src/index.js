@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import RecReducer from './RecReducer'
 
 const rootReducer = combineReducers({
-  rec: RecReducer
+  myRecs: RecReducer
 })
 
 const logger = store => {

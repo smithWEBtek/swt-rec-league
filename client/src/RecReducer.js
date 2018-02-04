@@ -1,7 +1,7 @@
 import * as actionTypes from './RecActionTypes';
 
 const initialState = {
-  recs: [],
+  records: [],
   loading: false,
   error: false,
   message: ''
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
     // case actionTypes.CREATE_REC:
     //   const newStudent = action.recData
     //   return Object.assign({}, state, {
-    //     recs: state.recs.concat(newStudent)
+    //     records: state.records.concat(newStudent)
     //   })
 
 
@@ -46,9 +46,12 @@ const reducer = (state = initialState, action) => {
       })
 
     case actionTypes.FETCH_RECS:
-      const recs = action.recsList
+      const records = action.recordsList
+
+      console.log('[RecsReducer] records', records)
+
       return Object.assign({}, state, {
-        recs: recs
+        records: records
       })
 
 
@@ -68,15 +71,15 @@ const reducer = (state = initialState, action) => {
 
     // case actionTypes.UPDATE_REC:
     //   const recData = action.updatedStudentData
-    //   const recIndex = state.recs.findIndex(rec => rec.id === recData.id);
+    //   const recIndex = state.records.findIndex(rec => rec.id === recData.id);
     //   const stateTemp = {
     //     ...state,
-    //     recs: [
-    //       ...state.recs.slice(0, recIndex),
-    //       ...state.recs.slice(recIndex + 1, state.recs.length)
+    //     records: [
+    //       ...state.records.slice(0, recIndex),
+    //       ...state.records.slice(recIndex + 1, state.records.length)
     //     ]
     //   };
-    //   return Object.assign({}, { ...stateTemp }, { recs: stateTemp.recs.concat(recData) })
+    //   return Object.assign({}, { ...stateTemp }, { records: stateTemp.records.concat(recData) })
 
 
     //-----DELETE REC-----------------------------
@@ -94,9 +97,9 @@ const reducer = (state = initialState, action) => {
     //   })
 
     // case actionTypes.DELETE_REC:
-    //   const updatedStudents = state.recs.filter(rec => rec.id !== action.id);
+    //   const updatedStudents = state.records.filter(rec => rec.id !== action.id);
     //   return Object.assign({}, state, {
-    //     recs: updatedStudents
+    //     records: updatedStudents
     //   })
 
     //----- DEFAULT --------------------------------

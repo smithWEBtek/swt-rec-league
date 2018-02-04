@@ -6,16 +6,23 @@ import { connect } from 'react-redux'
 import * as actions from './RecActions'
 import Player from './Player'
 
-class App extends Component {
+class PlayersList extends Component {
+  state = {
+    recs: {}
+  }
 
   componentDidMount() {
-    this.props.onFetchRecs()
+    fetch('https://swt-rec-league.herokuapp.com/')
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ recs: json })
+      })
   }
 
   render() {
     let renderRecs = <div><h3>We are loading the players now...</h3></div>
-    let recs = [...this.props.recs]
-    if (this.props.recs.length > 0) {
+    let recs = [...this.state.recs]
+    if (this.state.recs.length > 0) {
       renderRecs = recs.map((rec, index) => {
         return (
           <div key={index}>
@@ -47,7 +54,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    recs: state.myRecs.records
+    recs: state.rec.recs
   }
 }
 
