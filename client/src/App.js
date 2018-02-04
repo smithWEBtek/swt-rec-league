@@ -30,7 +30,8 @@ class App extends Component {
               name={rec.name}
               height={rec.height}
               weight={rec.weight}
-              team={rec.team.name}
+              teamName={rec.team.name}
+              teamLogoUrl={rec.team.logo_url}
               image_url={rec.image_url}
             />
           </div>

@@ -1,6 +1,6 @@
 Team.create(name: "Warriors", wins: 40, losses: 40, logo_url: "http://images.contentful.com/a4rx79jcl3n1/2N9qqpVHvqsQoisAAgAeGE/8ad3772823f592851acd87193b9a910f/logo-gsw-primary-blue.svg")
 Team.create(name: "Celtics", wins: 40, losses: 40, logo_url: "https://pbs.twimg.com/profile_images/2815110476/033393c13e6dec0fd6cc5006453fbeb5_400x400.png")
-Team.create(name: "Lakers", wins: 40, losses: 40, logo_url: "https://pbs.twimg.com/profile_images/923604432830439424/PmmLpTom.jpg")
+Team.create(name: "Lakers", wins: 40, losses: 40, logo_url: "http://i.cdn.turner.com/nba/nba/.element/img/1.0/teamsites/logos/teamlogos_500x500/lal.png")
 Team.create(name: "Blue Devils", wins: 40, losses: 40, logo_url: "http://www.hufsd.edu/assets/images/2017/april/modal-4_04c.jpg")
 Team.create(name: "Manchester United", wins: 40, losses: 40, logo_url: "https://www.hcltech.com/sites/default/files/left_mu.png")
 
