@@ -8,23 +8,24 @@ const PlayersList = (props) => {
 
   renderRecs = props.recs.map((rec, index) => {
     return (
-      <div key={index}>
-        <Player
-          name={rec.name}
-          height={rec.height}
-          weight={rec.weight}
-          teamName={rec.team.name}
-          teamLogoUrl={rec.team.logo_url}
-          image_url={rec.image_url}
-        />
-      </div>
+      <Player
+        key={index}
+        name={rec.name}
+        height={rec.height}
+        weight={rec.weight}
+        teamName={rec.team.name}
+        teamLogoUrl={rec.team.logo_url}
+        image_url={rec.image_url}
+      />
     )
   })
 
   return (
-    <div>
-      {renderRecs}
-    </div>
+    <div className="container">
+      <div className="row">
+        {renderRecs}
+      </div>
+    </div >
   )
 }
 

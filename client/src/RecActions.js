@@ -16,6 +16,9 @@ export const fetchRecs = () => {
     dispatch(fetchRecsStart())
     RecService.fetchRecs()
       .then(response => {
+
+        console.log('[RecActions] response: ', response)
+
         dispatch({ type: actionTypes.FETCH_RECS, recordsList: response })
         dispatch(fetchRecsSuccess())
       })
