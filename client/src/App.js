@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Switch, Route, Link } from 'react-router-dom'
+import * as actions from './RecActions'
 import bball from './bball.svg.png'
 import './App.css'
-import { connect } from 'react-redux'
-import * as actions from './RecActions'
 import PlayersList from './PlayersList'
+import Player from './Player'
 
 class App extends Component {
 
@@ -18,9 +20,11 @@ class App extends Component {
 
     let playerNames = <div><h3>Player names appear here...</h3></div>
     if (this.props.names) {
-      playerNames = this.props.names.map(name => {
+      playerNames = this.props.recs.map((rec, index) => {
         return (
-          <h4><Link to={`/players/${name.id}`}>{name}</Link></h4>
+          <div key={index}>
+            <p><Link to={`/players/${rec.id}`}>{rec.name}</Link></p>
+          </div>
         )
       })
     }
@@ -33,6 +37,10 @@ class App extends Component {
         </header>
         <div>{playerNames}</div>
         <PlayersList recs={this.props.recs} />
+        <Switch>
+          <Route exact path={`/players/:id`} component={Player} />
+          <Route exact path={`/`} render={() => <div><h3>home...</h3></div>} />
+        </Switch>
       </div>
     )
   }

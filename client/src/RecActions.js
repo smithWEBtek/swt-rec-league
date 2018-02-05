@@ -20,9 +20,7 @@ export const fetchRecs = () => {
     RecService.fetchRecs()
       .then(response => {
         console.log('[RecActions] response: ', response)
-
         let playerNames = []
-
         playerNames = response.map(r => r.name)
         dispatch(fetchPlayerNames(playerNames))
         dispatch({ type: actionTypes.FETCH_RECS, recordsList: response })
