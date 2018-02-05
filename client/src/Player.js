@@ -1,7 +1,11 @@
 import React from 'react'
 import './index.css'
+import { withRouter } from 'react-router-dom'
 
 const Player = (props) => {
+
+  console.log('[Player] props', props)
+
   return (
     <fieldset className='card'>
       <img src={props.image_url} alt='player' width='150px' height='100px' />
@@ -14,4 +18,4 @@ const Player = (props) => {
   )
 }
 
-export default Player
+export default withRouter(Player)

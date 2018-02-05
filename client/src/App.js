@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route, Link, withRouter } from 'react-router-dom'
 import * as actions from './RecActions'
 import bball from './bball.svg.png'
 import './App.css'
@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   render() {
-
+    let { match } = this.props
     console.log('[App] render this.props', this.props)
 
     let playerNames = <div><h3>Player names appear here...</h3></div>
@@ -36,10 +36,11 @@ class App extends Component {
           <h1>Rec League</h1>
         </header>
         <div>{playerNames}</div>
-        <PlayersList recs={this.props.recs} />
+        {/* <PlayersList recs={this.props.recs} /> */}
         <Switch>
-          <Route exact path={`/players/:id`} component={Player} />
-          <Route exact path={`/`} render={() => <div><h3>home...</h3></div>} />
+          <Route path={`${match.url}/:id`} exact component={Player} />
+
+          {/* <Route exact path={`/`} render={() => <div><h3>home...</h3></div>} /> */}
         </Switch>
       </div>
     )
@@ -60,4 +61,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App))
